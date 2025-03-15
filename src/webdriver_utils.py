@@ -6,6 +6,7 @@ from seleniumwire.undetected_chromedriver.v2 import Chrome, ChromeOptions
 def initialize_driver(headless=False, implicit_wait: int = None):
     options = uc.ChromeOptions()
     options.add_argument("--log-level=3")
+    options.add_argument("--deny-permission-prompts")
     if headless:
         options.add_argument("--headless")
 
@@ -20,6 +21,7 @@ def initialize_driver(headless=False, implicit_wait: int = None):
 def init_seleniumwire_webdriver(*args):
     chrome_options = ChromeOptions()
     chrome_options.add_argument("--log-level=3")
+    chrome_options.add_argument("--deny-permission-prompts")
     chrome_options.add_argument("--ignore-certificate-errors")
     chrome_options.add_argument("--disable-extensions")
     chrome_options.add_argument("--disable-gpu")
