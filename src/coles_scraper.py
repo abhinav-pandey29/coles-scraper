@@ -1,0 +1,43 @@
+"""
+Coles Scraper class.
+"""
+
+import logging
+from typing import List
+
+import requests
+
+import src.models as models
+from src.fetcher import ColesPageFetcher
+from src.scrapers import ColesProductScraper, ColesProductTileScraper
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+
+class ColesScraper:
+    """
+    This helper class provides a facade for scraping Coles website.
+    """
+
+    def __init__(self, fetcher=None):
+        self.fetcher = fetcher or ColesPageFetcher()
+        self.product_extractor = ColesProductScraper
+        self.product_tile_extractor = ColesProductTileScraper
+
+    def scrape_product_url(self, url: str) -> models.Product:
+        response = self.fetch(url)
+        return self.product_extractor(response.text).get_product()
+
+    def scrape_browse_category_url(self, url: str) -> List[models.ProductTile]:
+        response = self.fetch(url)
+        return self.product_tile_extractor(response.text).get_all_products()
+
+    def fetch(self, url: str) -> requests.Response:
+        try:
+            response = self.fetcher.get(url)
+            response.raise_for_status()
+            return response
+        except Exception as e:
+            logger.exception(f"Error fetching URL {url}: {e}")
+            raise
