@@ -7,8 +7,23 @@ from unittest.mock import Mock, patch
 import pytest
 import requests
 
-from src.scrapers import ColesProductScraper, ColesProductTileScraper
 from src.coles_scraper import ColesScraper
+from src.scrapers import ColesProductScraper, ColesProductTileScraper
+
+TEST_VALID_PRODUCT_URL = (
+    "https://www.coles.com.au/product/smiths-original-chips-175g-24792"
+)
+TEST_VALID_BROWSE_URL = "https://www.coles.com.au/browse/snacks-and-confectionery"
+TEST_INVALID_PRODUCT_URLS = [
+    "https://www.coles.com.au/browse/chips",  # Not a product URL
+    "https://www.woolworths.com.au/product/something",  # Wrong domain
+    "http://coles.com.au/not-product/item",  # Wrong path
+]
+TEST_INVALID_BROWSE_URLS = [
+    "https://www.coles.com.au/product/chips",  # Not a browse URL
+    "https://www.woolworths.com.au/browse/something",  # Wrong domain
+    "http://coles.com.au/search/item",  # Wrong path
+]
 
 
 class TestColesScraper:
@@ -50,3 +65,31 @@ class TestColesScraper:
             assert default_scraper.fetcher == MockFetcher.return_value
             assert scraper.product_extractor == ColesProductScraper
             assert scraper.product_tile_extractor == ColesProductTileScraper
+
+    def test_url_validation_product(self, scraper):
+        """Test that product URL validation works correctly."""
+        try:
+            with patch.object(scraper, "fetch"), patch.object(
+                scraper, "product_extractor"
+            ):
+                scraper.scrape_product_url(TEST_VALID_PRODUCT_URL)
+        except ValueError:
+            pytest.fail("Valid product URL raised validation exception")
+
+        for url in TEST_INVALID_PRODUCT_URLS:
+            with pytest.raises(ValueError, match=r"Invalid URL:.*"):
+                scraper.scrape_product_url(url)
+
+    def test_url_validation_browse(self, scraper):
+        """Test that browse URL validation works correctly."""
+        try:
+            with patch.object(scraper, "fetch"), patch.object(
+                scraper, "product_tile_extractor"
+            ):
+                scraper.scrape_browse_category_url(TEST_VALID_BROWSE_URL)
+        except ValueError:
+            pytest.fail("Valid browse URL raised validation exception")
+
+        for url in TEST_INVALID_BROWSE_URLS:
+            with pytest.raises(ValueError, match=r"Invalid URL:.*"):
+                scraper.scrape_browse_category_url(url)

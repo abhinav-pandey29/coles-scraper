@@ -10,9 +10,14 @@ import requests
 import src.models as models
 from src.fetcher import ColesPageFetcher
 from src.scrapers import ColesProductScraper, ColesProductTileScraper
+from src._validators import url_validator
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+
+COLES_URL_PREFIX = r"^https?://(www\.)?coles\.com\.au"
+PRODUCT_URL_PATTERN = f"{COLES_URL_PREFIX}/product/.+"  # Product path
+BROWSE_URL_PATTERN = f"{COLES_URL_PREFIX}/browse/.+"  # Browse path
 
 
 class ColesScraper:
@@ -25,10 +30,12 @@ class ColesScraper:
         self.product_extractor = ColesProductScraper
         self.product_tile_extractor = ColesProductTileScraper
 
+    @url_validator(PRODUCT_URL_PATTERN)
     def scrape_product_url(self, url: str) -> models.Product:
         response = self.fetch(url)
         return self.product_extractor(response.text).get_product()
 
+    @url_validator(BROWSE_URL_PATTERN)
     def scrape_browse_category_url(self, url: str) -> List[models.ProductTile]:
         response = self.fetch(url)
         return self.product_tile_extractor(response.text).get_all_products()
