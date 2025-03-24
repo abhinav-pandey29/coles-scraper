@@ -15,11 +15,11 @@ pip install -r requirements.txt
 
 ## Core Components
 
-- [ColesProductTileScraper](#colesproducttilescraper)
-- [ColesProductScraper](#colesproductscraper)
+- [ColesProductTileExtractor](#colesproducttileextractor)
+- [ColesProductExtractor](#colesproductextractor)
 - [ColesPageFetcher](#colespagefetcher)
 
-### ColesProductTileScraper
+### ColesProductTileExtractor
 
 For extracting product data from category browsing pages, with URLs like `https://www.coles.com.au/browse/<category>` or `https://www.coles.com.au/browse/<category>?page=<page_number>`
 
@@ -47,14 +47,14 @@ Examples:
 Usage example:
 
 ```python
-from src.scrapers import ColesProductTileScraper
+from src.extractors import ColesProductTileExtractor
 
 # Obtain HTML content via your preferred method
 html_content = ...
 
-# Create scraper instance and extract products
-scraper = ColesProductTileScraper(html_content)
-products = scraper.get_all_products()
+# Create extractor instance and extract products
+extractor = ColesProductTileExtractor(html_content)
+products = extractor.extract()
 
 # Each product contains fields like name, url, price, etc.
 for product in products:
@@ -73,7 +73,7 @@ Example output:
 }
 ```
 
-### ColesProductScraper
+### ColesProductExtractor
 
 For extracting detailed information from product pages, with URLs like `https://www.coles.com.au/product/<product-id>`
 
@@ -85,14 +85,14 @@ Examples:
 Usage example:
 
 ```python
-from src.scrapers import ColesProductScraper
+from src.extractors import ColesProductExtractor
 
 # Obtain HTML content for a product page
 html_content = ...
 
-# Create scraper instance and get product details
-scraper = ColesProductScraper(html_content)
-product = scraper.get_product()
+# Create extractor instance and get product details
+extractor = ColesProductExtractor(html_content)
+product = extractor.extract()
 
 print(product.dict())
 ```
