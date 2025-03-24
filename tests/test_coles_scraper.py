@@ -8,7 +8,7 @@ import pytest
 import requests
 
 from src.coles_scraper import ColesScraper
-from src.scrapers import ColesProductScraper, ColesProductTileScraper
+from src.extractors import ColesProductExtractor, ColesProductTileExtractor
 
 TEST_VALID_PRODUCT_URL = (
     "https://www.coles.com.au/product/smiths-original-chips-175g-24792"
@@ -55,16 +55,16 @@ class TestColesScraper:
         # Test with user-provided fetcher
         scraper = ColesScraper(fetcher=mock_fetcher)
         assert scraper.fetcher == mock_fetcher
-        assert scraper.product_extractor == ColesProductScraper
-        assert scraper.product_tile_extractor == ColesProductTileScraper
+        assert scraper.product_extractor == ColesProductExtractor
+        assert scraper.product_tile_extractor == ColesProductTileExtractor
 
         # Test with default fetcher
         with patch("src.coles_scraper.ColesPageFetcher") as MockFetcher:
             default_scraper = ColesScraper()
             MockFetcher.assert_called_once()
             assert default_scraper.fetcher == MockFetcher.return_value
-            assert scraper.product_extractor == ColesProductScraper
-            assert scraper.product_tile_extractor == ColesProductTileScraper
+            assert scraper.product_extractor == ColesProductExtractor
+            assert scraper.product_tile_extractor == ColesProductTileExtractor
 
     def test_url_validation_product(self, scraper):
         """Test that product URL validation works correctly."""
