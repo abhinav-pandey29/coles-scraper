@@ -25,8 +25,8 @@ class ColesScraper:
     This helper class provides a facade for scraping Coles website.
     """
 
-    def __init__(self, fetcher=None):
-        self.fetcher = fetcher or ColesPageFetcher()
+    def __init__(self, fetcher=None, headers=None):
+        self.fetcher = fetcher or ColesPageFetcher(headers=headers)
         self.product_extractor = ColesProductScraper
         self.product_tile_extractor = ColesProductTileScraper
 

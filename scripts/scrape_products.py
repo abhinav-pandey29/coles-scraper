@@ -15,9 +15,8 @@ import pytz
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
-from src.fetcher import ColesPageFetcher
+from src.coles_scraper import ColesScraper
 from src.models import ProductTile
-from src.scrapers import ColesProductTileScraper
 
 logger = logging.getLogger(__name__)
 
@@ -34,17 +33,8 @@ class BrowseQuery:
     def url(self) -> str:
         return f"https://www.coles.com.au/browse/{self.category}?page={self.page}"
 
-
-def extract_products_from_browse(fetcher: ColesPageFetcher, query: BrowseQuery):
-    response = fetcher.get(url=query.url)
-    products = ColesProductTileScraper(response.content).get_all_products()
-    logger.info(
-        "Extracted %d products (Category %s, Pg. %d)",
-        len(products),
-        query.category,
-        query.page,
-    )
-    return products
+    def __repr__(self):
+        return f"Category: {self.category}, Pg. {self.page}"
 
 
 def update_csv_with_archive(
@@ -223,22 +213,18 @@ if __name__ == "__main__":
         "AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0",
     }
-    fetcher = ColesPageFetcher(headers=headers)
+    scraper = ColesScraper(headers=headers)
 
     for category in categories:
         query = BrowseQuery(category=category, page=1)
         products = []
         while True:
             try:
-                browse_results = extract_products_from_browse(fetcher, query)
+                browse_results = scraper.scrape_browse_category_url(query.url)
+                logger.info("Extracted %d products (%s)", len(browse_results), query)
             except Exception as e:
                 browse_results = []
-                logger.error(
-                    "Error extracting products on page %d for category '%s': %s",
-                    query.page,
-                    category,
-                    e,
-                )
+                logger.error("Error extracting products for %s: %s", query, e)
 
             if browse_results:
                 products.extend(browse_results)
