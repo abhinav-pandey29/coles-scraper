@@ -98,7 +98,7 @@ class ColesPageFetcher:
         """
         logger.info("Refreshing cookie using refresh_url: %s", self.refresh_url)
         driver = self.driver_factory()
-        driver.request_interceptor = self.intercept_cookie
+        driver.request_interceptor = self._intercept_cookie
 
         try:
             # First call to prompt cookie creation,
@@ -118,7 +118,10 @@ class ColesPageFetcher:
         finally:
             driver.quit()
 
-    def intercept_cookie(self, request):
+    def _intercept_cookie(self, request):
+        """
+        Intercepts the cookie from a refresh URL request and sets it in session headers.
+        """
         if request.url.startswith(self.refresh_url):
             cookie_value = request.headers.get("cookie")
             if cookie_value:
