@@ -36,14 +36,14 @@ class ColesPageFetcher:
         driver_factory: Optional[Callable] = None,
         session: Optional[requests.Session] = None,
         headers: Optional[Dict] = None,
-        refresh_urls: List[str] = None,
+        refresh_url: Optional[str] = None,
         sleep_func=time.sleep,
     ):
         """
         :param driver_factory: Callable to create a Selenium (seleniumwire) driver.
         :param session: An optional requests.Session instance.
         :param headers: Optional headers dict; if not provided, defaults are used.
-        :param refresh_urls: A list of URLs to use for cookie refresh. Defaults to a predefined list.
+        :param refresh_url: URL to visit when refreshing cookie. Defaults to a random grocery category page.
         :param sleep_func: Function to use for sleeping. Defaults to time.sleep (can be overridden in tests).
         """
         self.driver_factory = driver_factory or self.DEFAULT_DRIVER_FACTORY
@@ -51,8 +51,7 @@ class ColesPageFetcher:
         self.session.headers = (
             headers.copy() if headers else self.DEFAULT_HEADERS.copy()
         )
-        self.refresh_urls = refresh_urls or self.DEFAULT_REFRESH_URLS
-        self.refresh_url = random.choice(self.refresh_urls)
+        self.refresh_url = refresh_url or random.choice(self.DEFAULT_REFRESH_URLS)
         self.sleep_func = sleep_func
 
         if not self.session.headers.get("cookie"):
