@@ -226,6 +226,10 @@ if __name__ == "__main__":
                 browse_results = []
                 logger.error("Error extracting products for %s: %s", query, e)
 
+            # Pause briefly between requests to help avoid bot-detection triggers.
+            # TODO: Implement a centralized rate-limiting mechanism for all Coles website requests.
+            time.sleep(1)
+
             if browse_results:
                 products.extend(browse_results)
                 query.page += 1
