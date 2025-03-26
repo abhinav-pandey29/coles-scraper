@@ -30,6 +30,16 @@ class ColesScraper:
         self.product_extractor = ColesProductExtractor
         self.product_tile_extractor = ColesProductTileExtractor
 
+    def scrape_product(self, product_id: str) -> models.Product:
+        url = f"https://www.coles.com.au/product/{product_id}"
+        return self.scrape_product_url(url)
+
+    def scrape_products_by_category(
+        self, category: str, page: int = 1
+    ) -> List[models.ProductTile]:
+        url = f"https://www.coles.com.au/browse/{category}?page={page}"
+        return self.scrape_browse_category_url(url)
+
     @url_validator(PRODUCT_URL_PATTERN)
     def scrape_product_url(self, url: str) -> models.Product:
         response = self.fetch(url)
