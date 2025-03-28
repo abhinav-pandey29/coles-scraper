@@ -10,7 +10,7 @@ import requests
 import src.models as models
 from src._validators import url_validator
 from src.extractors import ColesProductExtractor, ColesProductTileExtractor
-from src.fetcher import ColesPageFetcher
+from src.core.fetcher import ColesPageFetcher
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

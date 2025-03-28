@@ -1,7 +1,7 @@
 import logging
 import random
 import time
-from typing import Callable, Dict, List, Optional
+from typing import Callable, Dict, Optional
 
 import requests
 import selenium.webdriver.support.expected_conditions as EC
@@ -103,7 +103,8 @@ class ColesPageFetcher:
         try:
             # First call to prompt cookie creation,
             # Second call to intercept cookie and update headers
-            for _ in range(2):
+            _NUM_VISITS = 2
+            for _ in range(_NUM_VISITS):
                 try:
                     driver.get(self.refresh_url)
                     WebDriverWait(driver, 30).until(
