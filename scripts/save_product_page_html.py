@@ -28,8 +28,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
-from src.poms.base import BasePage
 from src.webdriver_utils import initialize_driver
+from src.core.base_page import BasePage
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(

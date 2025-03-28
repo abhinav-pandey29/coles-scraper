@@ -6,10 +6,9 @@ from typing import List
 
 from selenium.webdriver.common.by import By
 
+from src.core.base_page import BasePage
 from src.extractors import ColesProductTileExtractor
 from src.models import ProductTile
-
-from .base import BasePage
 
 
 class ProductsPageLocators:
