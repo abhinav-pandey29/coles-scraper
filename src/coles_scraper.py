@@ -8,9 +8,9 @@ from typing import List
 import requests
 
 import src.models as models
-from src._validators import url_validator
-from src.extractors import ColesProductExtractor, ColesProductTileExtractor
 from src.core.fetcher import ColesPageFetcher
+from src.core.utils import validate_url
+from src.extractors import ColesProductExtractor, ColesProductTileExtractor
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -40,14 +40,14 @@ class ColesScraper:
         url = f"https://www.coles.com.au/browse/{category}?page={page}"
         return self.scrape_browse_category_url(url)
 
-    @url_validator(PRODUCT_URL_PATTERN)
     def scrape_product_url(self, url: str) -> models.Product:
-        response = self.fetch(url)
+        valid_url = validate_url(url, PRODUCT_URL_PATTERN)
+        response = self.fetch(valid_url)
         return self.product_extractor(response.text).extract()
 
-    @url_validator(BROWSE_URL_PATTERN)
     def scrape_browse_category_url(self, url: str) -> List[models.ProductTile]:
-        response = self.fetch(url)
+        valid_url = validate_url(url, BROWSE_URL_PATTERN)
+        response = self.fetch(valid_url)
         return self.product_tile_extractor(response.text).extract()
 
     def fetch(self, url: str) -> requests.Response:
