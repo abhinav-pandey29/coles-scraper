@@ -31,7 +31,7 @@ class TestColesScraper:
     @pytest.fixture
     def mock_fetcher(self):
         """Create a mock ColesPageFetcher with refresh_cookie mocked."""
-        with patch("src.fetcher.ColesPageFetcher") as MockFetcher:
+        with patch("src.core.fetcher.ColesPageFetcher") as MockFetcher:
             mock_fetcher = MockFetcher.return_value
             mock_fetcher.refresh_cookie = Mock()
             mock_fetcher.get = Mock()
