@@ -8,7 +8,7 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
-from src.core.webdriver_utils import initialize_driver
+from src.core.webdriver import initialize_driver
 from src.page.categories import CategoriesPage
 
 DEST_DIR = "./data/raw"

@@ -4,11 +4,8 @@ import time
 from typing import Callable, Dict, Optional
 
 import requests
-import selenium.webdriver.support.expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 
-from .webdriver_utils import init_seleniumwire_webdriver
+from .webdriver import init_seleniumwire_webdriver, wait_for_presence_of_element
 
 logger = logging.getLogger(__name__)
 
@@ -107,10 +104,10 @@ class ColesPageFetcher:
             for _ in range(_NUM_VISITS):
                 try:
                     driver.get(self.refresh_url)
-                    WebDriverWait(driver, 30).until(
-                        EC.presence_of_element_located(
-                            (By.CSS_SELECTOR, "#coles-targeting-header-container")
-                        )
+                    wait_for_presence_of_element(
+                        driver=driver,
+                        locator=("css selector", "#coles-targeting-header-container"),
+                        timeout=30,
                     )
                     self.sleep_func(5)
                 except Exception as e:
