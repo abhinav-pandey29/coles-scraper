@@ -4,9 +4,8 @@ Page Object Mode for Coles category browsing pages.
 
 from typing import List
 
-from selenium.webdriver.common.by import By
-
 from src.core.base_page import BasePage
+from src.core.webdriver import By
 from src.extractors import ColesProductTileExtractor
 from src.models import ProductTile
 

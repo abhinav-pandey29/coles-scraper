@@ -2,9 +2,13 @@ from typing import Tuple
 
 import chromedriver_autoinstaller
 import undetected_chromedriver as uc
+
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from seleniumwire.undetected_chromedriver.v2 import Chrome, ChromeOptions
+
+# for importing By in other parts of the codebase
+from selenium.webdriver.common.by import By  # noqa
 
 
 def initialize_driver(headless=False, implicit_wait: int = None):

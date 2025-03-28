@@ -5,7 +5,7 @@ from typing import Callable, Dict, Optional
 
 import requests
 
-from .webdriver import init_seleniumwire_webdriver, wait_for_presence_of_element
+from .webdriver import By, init_seleniumwire_webdriver, wait_for_presence_of_element
 
 logger = logging.getLogger(__name__)
 
@@ -106,7 +106,7 @@ class ColesPageFetcher:
                     driver.get(self.refresh_url)
                     wait_for_presence_of_element(
                         driver=driver,
-                        locator=("css selector", "#coles-targeting-header-container"),
+                        locator=(By.CSS_SELECTOR, "#coles-targeting-header-container"),
                         timeout=30,
                     )
                     self.sleep_func(5)
