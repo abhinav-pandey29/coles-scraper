@@ -8,7 +8,7 @@ import selenium.webdriver.support.expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 
-from src.webdriver_utils import init_seleniumwire_webdriver
+from .webdriver_utils import init_seleniumwire_webdriver
 
 logger = logging.getLogger(__name__)
 
