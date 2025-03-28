@@ -7,7 +7,7 @@ from typing import List
 from bs4.element import Tag
 
 from src import models
-from src.extractors.common import HtmlExtractor
+from src.core.base_extractor import HtmlExtractor
 
 
 class ColesProductTileExtractor(HtmlExtractor):

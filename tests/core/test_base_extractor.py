@@ -4,7 +4,7 @@ Tests for common extraction methods.
 
 from bs4 import BeautifulSoup, Tag
 
-from src.extractors.common import HtmlExtractor
+from src.core.base_extractor import HtmlExtractor
 
 
 def get_soup(html: str) -> Tag:

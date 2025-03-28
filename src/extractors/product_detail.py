@@ -3,7 +3,7 @@ Extractor for product detail page.
 """
 
 from src import models
-from src.extractors.common import HtmlExtractor
+from src.core.base_extractor import HtmlExtractor
 
 
 class ColesProductExtractor(HtmlExtractor):
