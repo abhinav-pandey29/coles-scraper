@@ -49,7 +49,7 @@ class Product:
     price: Optional[str] = None
     price_calc_desc: Optional[str] = None
     categories: List[str] = field(default_factory=list)
-    tags: List[str] = None
+    tags: List[str] = field(default_factory=list)
     additional_desc: Optional[str] = None
     nutritional_info: Optional[Dict] = None
     ingredients: Optional[str] = None

@@ -111,9 +111,8 @@ class ColesProductExtractor(HtmlExtractor):
         return self.get_all_text_content(self.soup, "span", attrs={"itemprop": "name"})
 
     def extract_tags(self):
-        return self.get_all_text_content(
-            self.soup.find("ul", class_="dietary-allergen-list"), "li"
-        )
+        tags = self.soup.find("ul", class_="dietary-allergen-list")
+        return self.get_all_text_content(tags, "li") if tags else []
 
     def extract_additional_desc(self):
         return self.get_text_content(
