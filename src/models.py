@@ -3,7 +3,7 @@ Models for Coles scrapers.
 """
 
 from dataclasses import dataclass, field, asdict
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 
 @dataclass
@@ -40,10 +40,24 @@ class Product:
     Model for product details on Coles' **dedicated product pages**.
     """
 
+    url: str
+    slug: str
     name: str = field(default="Unknown Product")
     brand_name: Optional[str] = field(default=None)
-    brand_url: Optional[str] = field(default=None)
+    brand_slug: Optional[str] = field(default=None)
+    image_url: Optional[str] = None
+    price: Optional[str] = None
+    price_calc_desc: Optional[str] = None
     categories: List[str] = field(default_factory=list)
+    tags: List[str] = None
+    additional_desc: Optional[str] = None
+    nutritional_info: Optional[Dict] = None
+    ingredients: Optional[str] = None
+    allergens: Optional[str] = None
+    dietary: Optional[str] = None
+    usage_instructions: Optional[str] = None
+    storage_instructions: Optional[str] = None
+    warnings: Optional[str] = None
     retail_limit: Optional[str] = field(default=None)
     promotional_limit: Optional[str] = field(default=None)
     product_code: Optional[str] = field(default=None)
@@ -54,7 +68,7 @@ class Product:
             f"Product:\n"
             f"  Name               : {self.name or 'N/A'}\n"
             f"  Brand              : {self.brand_name or 'N/A'}\n"
-            f"  Brand URL          : {self.brand_url or 'N/A'}\n"
+            f"  Brand Slug         : {self.brand_slug or 'N/A'}\n"
             f"  Categories         : {', '.join(self.categories) or 'N/A'}\n"
             f"  Retail Limit       : {self.retail_limit or 'N/A'}\n"
             f"  Promotional Limit  : {self.promotional_limit or 'N/A'}\n"
