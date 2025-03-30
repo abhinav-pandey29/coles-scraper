@@ -1,0 +1,60 @@
+{
+  "url": "https://www.coles.com.au/product/coles-frozen-fruit-mixed-berries-500g-1301206",
+  "slug": "coles-frozen-fruit-mixed-berries-500g-1301206",
+  "name": "Coles Frozen Fruit Mixed\n                                Berries | 500g",
+  "brand_name": "Coles",
+  "brand_slug": "coles-3955134709",
+  "image_url": "https://cdn.productimages.coles.com.au/productimages/1/1301206.jpg",
+  "price": "$6.50",
+  "price_calc_desc": "$13.00 per 1kg",
+  "categories": ["Home", "All categories", "Frozen", "Frozen Fruit", "Berries"],
+  "tags": [
+    "High in dietary\n                                            fibre"
+  ],
+  "additional_desc": "Coles Mixed Berries 500g\n\n\nBlueberries, strawberries, blackberries and raspberries\n100% natural\nGood source of fibre\n\n\nColes Mixed Berries are 100% natural with no added sugar. With a\n                                                        colourful combination of blueberries, strawberries, blackberries\n                                                        and raspberries they're a good source of fibre for healthy\n                                                        digestion and a good source of Vitamin C to support a healthy\n                                                        immune system.\n\nColes Mixed Berries are a freezer staple, picked at the peak of\n                                                        freshness then snap frozen to lock in the goodness. With a\n                                                        5-star health rating they're ideal for all your summer desserts,\n                                                        snacks and breakfasts. Make a simple but delicious sorbet by\n                                                        blending frozen Coles Mixed Berries with a little honey and\n                                                        freezing until set. Or try making overnight oats by blending\n                                                        rolled oats with black chia seeds and pepitas before adding\n                                                        almond milk and a splash of maple syrup. Place in the fridge for\n                                                        at least 4 hours or overnight then fold in some toasted almonds\n                                                        and coconut flakes. Top with defrosted Coles Mixed Berries for a\n                                                        wholesome and delicious breakfast or anytime treat.",
+  "nutritional_info": {
+    "Protein": { "Per 100g/ml": "1 g", "Per Serving": "1.5 g", "%DI": "3" },
+    "Carbohydrate": {
+      "Per 100g/ml": "8.1 g",
+      "Per Serving": "12.2 g",
+      "%DI": "4"
+    },
+    "Energy (Cal)": { "Per 100g/ml": "48.3 Cal", "Per Serving": "72.4 Cal" },
+    "Energy (kJ)": {
+      "Per 100g/ml": "202 kJ",
+      "Per Serving": "303 kJ",
+      "%DI": "3"
+    },
+    "Fat - Saturated": {
+      "Per 100g/ml": "0 g",
+      "Per Serving": "0 g",
+      "%DI": "0"
+    },
+    "Sugars - Total": {
+      "Per 100g/ml": "7.8 g",
+      "Per Serving": "11.7 g",
+      "%DI": "13"
+    },
+    "Sodium": { "Per 100g/ml": "1 mg", "Per Serving": "1.5 mg", "%DI": "0" },
+    "Vitamin C": { "Per 100g/ml": "20 mg", "Per Serving": "30 mg" },
+    "Dietary Fibre": {
+      "Per 100g/ml": "5.1 g",
+      "Per Serving": "7.65 g",
+      "%DI": "26"
+    },
+    "Fat - Total": {
+      "Per 100g/ml": "0.17 g",
+      "Per Serving": "0.255 g",
+      "%DI": "0"
+    }
+  },
+  "ingredients": "INGREDIENTS: Blueberry (37%), Blackberry (33%), Raspberries (30%).",
+  "allergens": null,
+  "dietary": "High in Fibre, No Artificial Flavours or Colours, Source of Vitamin C",
+  "usage_instructions": null,
+  "storage_instructions": null,
+  "warnings": null,
+  "retail_limit": "Retail limit: 20",
+  "promotional_limit": "Promotional limit: 20",
+  "product_code": "Code: 1301206"
+}

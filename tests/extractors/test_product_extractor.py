@@ -10,6 +10,8 @@ from tests.helpers import load_html_content, load_json
 
 TEST_PRODUCT_PAGES = [
     "product-detail-coles-appy-fizz-250ml-8060378",
+    "product-detail-lotus-biscoff-sandwich-biscuits-vanilla-110g-6845664",
+    "product-detail-coles-frozen-fruit-mixed-berries-500g-1301206",
 ]
 
 
