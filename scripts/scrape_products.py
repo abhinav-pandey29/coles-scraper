@@ -22,7 +22,7 @@ from src.models import ProductTile
 logger = logging.getLogger(__name__)
 
 LOCAL_TZ = pytz.timezone("Australia/Sydney")
-PAUSE_BETWEEN_CATEGORIS = 300  # 5 minutes
+PAUSE_BETWEEN_CATEGORIES = 300  # 5 minutes
 
 
 @dataclass
@@ -72,8 +72,8 @@ class ColesCategoryProductPipeline:
             products = self.extract(category)
             self.load(products, category)
             if i < len(self.categories) - 1:
-                logger.info("Sleeping for %d seconds...", PAUSE_BETWEEN_CATEGORIS)
-                time.sleep(PAUSE_BETWEEN_CATEGORIS)
+                logger.info("Sleeping for %d seconds...", PAUSE_BETWEEN_CATEGORIES)
+                time.sleep(PAUSE_BETWEEN_CATEGORIES)
 
     def extract(self, category: str) -> List[ProductTile]:
         query = BrowseQuery(category=category, page=1)
