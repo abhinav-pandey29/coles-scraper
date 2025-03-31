@@ -11,6 +11,7 @@ from tests.helpers import load_html_content, load_json
 
 TEST_BROWSE_CATEGORY_PAGES = [
     "browse-category-dairy-eggs-fridge-page-4",
+    "browse-category-frozen-page-1",
 ]
 
 
