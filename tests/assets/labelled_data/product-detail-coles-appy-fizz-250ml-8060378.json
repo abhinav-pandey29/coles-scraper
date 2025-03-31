@@ -25,5 +25,6 @@
   "warnings": null,
   "retail_limit": "Retail limit: 20",
   "promotional_limit": "Promotional limit: 12",
-  "product_code": "Code: 8060378"
+  "product_code": "Code: 8060378",
+  "promotion_type": "SPECIAL"
 }

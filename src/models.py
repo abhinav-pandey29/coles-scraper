@@ -63,6 +63,7 @@ class Product:
     retail_limit: Optional[str] = field(default=None)
     promotional_limit: Optional[str] = field(default=None)
     product_code: Optional[str] = field(default=None)
+    promotion_type: Optional[str] = field(default=None)
 
     def __repr__(self):
         repr_string = (

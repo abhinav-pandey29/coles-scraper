@@ -56,5 +56,6 @@
   "warnings": null,
   "retail_limit": "Retail limit: 20",
   "promotional_limit": "Promotional limit: 20",
-  "product_code": "Code: 1301206"
+  "product_code": "Code: 1301206",
+  "promotion_type": "EVERY DAY"
 }

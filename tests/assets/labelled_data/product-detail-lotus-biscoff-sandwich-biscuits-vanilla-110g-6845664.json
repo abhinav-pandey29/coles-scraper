@@ -34,5 +34,6 @@
   "warnings": "May contain milk",
   "retail_limit": "Retail limit: 20",
   "promotional_limit": "Promotional limit: 12",
-  "product_code": "Code: 6845664"
+  "product_code": "Code: 6845664",
+  "promotion_type": null
 }

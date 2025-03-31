@@ -64,6 +64,7 @@ class ColesProductExtractor(HtmlExtractor):
             retail_limit=self.extract_text_by_testid("p", "retail-limit"),
             promotional_limit=self.extract_text_by_testid("p", "promotional-limit"),
             product_code=self.extract_text_by_testid("p", "product-code"),
+            promotion_type=self.extract_promotion_type(),
         )
 
     # -------- Extraction helper methods --------
@@ -143,6 +144,23 @@ class ColesProductExtractor(HtmlExtractor):
     def extract_text_by_testid(self, name: str, testid: str):
         raw_text = self.get_text_content(self.soup, name, attrs={"data-testid": testid})
         return self.clean_whitespace(raw_text)
+
+    def extract_promotion_type(self):
+        img_container = self.soup.find(
+            "div", class_="coles-targeting-StylesProductDetailStylesProductImageWrapper"
+        )
+        badge = self.get_text_content(img_container, "span", class_="product-roundel")
+        if not badge:
+            return None
+
+        normalized = badge.strip().upper()
+
+        if normalized.startswith("1/2"):
+            return "HALF PRICE"
+        if normalized in ["EVERY DAY", "ONLINE ONLY", "SPECIAL", "DOWN DOWN"]:
+            return normalized
+
+        return None
 
     @staticmethod
     def clean_whitespace(text):
