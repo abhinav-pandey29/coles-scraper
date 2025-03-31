@@ -17,6 +17,7 @@ class ProductTile:
     price: Optional[str] = field(default=None)
     price_calc_method: Optional[str] = field(default=None)
     image_url: Optional[str] = field(default=None)
+    promotion_type: Optional[str] = field(default=None)
 
     def __repr__(self):
         repr_string = (
@@ -27,6 +28,7 @@ class ProductTile:
             f"  Price              : {self.price or 'N/A'}\n"
             f"  Price Calculation  : {self.price_calc_method or 'N/A'}\n"
             f"  Image URL          : {self.image_url or 'N/A'}\n"
+            f"  Promotion Type     : {self.promotion_type or 'N/A'}\n"
             f"{'='*40}\n"
         )
         return repr_string

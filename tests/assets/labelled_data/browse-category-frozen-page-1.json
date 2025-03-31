@@ -1,17 +1,24 @@
 {
   "EXPECTED_PRODUCT_COUNT": 34,
+  "EXPECTED_SPECIAL_PRODUCT_COUNT": 2,
+  "EXPECTED_DOWN_DOWN_PRODUCT_COUNT": 1,
+  "EXPECTED_EVERY_DAY_PRODUCT_COUNT": 10,
+  "EXPECTED_HALF_PRICE_PRODUCT_COUNT": 2,
+  "EXPECTED_ONLINE_ONLY_PRODUCT_COUNT": 2,
   "EXPECTED_FIRST_PRODUCT_DATA": {
     "name": "Coles Frozen Fruit Mixed Berries | 500g",
     "url": "/product/coles-frozen-fruit-mixed-berries-500g-1301206",
     "price": "$6.50",
     "price_calc_method": "$13.00 per 1kg",
-    "image_url": "https://www.coles.com.au/_next/image?url=https%3A%2F%2Fcdn.productimages.coles.com.au%2Fproductimages%2F1%2F1301206.jpg&w=640&q=90"
+    "image_url": "https://www.coles.com.au/_next/image?url=https%3A%2F%2Fcdn.productimages.coles.com.au%2Fproductimages%2F1%2F1301206.jpg&w=640&q=90",
+    "promotion_type": "EVERY DAY"
   },
   "EXPECTED_LAST_PRODUCT_DATA": {
     "name": "Coles Beer Battered Steakhouse Chips | 750g",
     "url": "/product/coles-beer-battered-steakhouse-chips-750g-2271348",
     "price": "$4.50",
     "price_calc_method": "$6.00 per 1kg",
-    "image_url": "https://www.coles.com.au/_next/image?url=https%3A%2F%2Fcdn.productimages.coles.com.au%2Fproductimages%2F2%2F2271348.jpg&w=640&q=90"
+    "image_url": "https://www.coles.com.au/_next/image?url=https%3A%2F%2Fcdn.productimages.coles.com.au%2Fproductimages%2F2%2F2271348.jpg&w=640&q=90",
+    "promotion_type": "EVERY DAY"
   }
 }

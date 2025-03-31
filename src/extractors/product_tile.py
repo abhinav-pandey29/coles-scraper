@@ -2,7 +2,7 @@
 Extractor for category-wise product browsing page.
 """
 
-from typing import List
+from typing import List, Optional
 
 from bs4.element import Tag
 
@@ -83,5 +83,20 @@ class ColesProductTileExtractor(HtmlExtractor):
             ),
             "url": self.get_attribute(tile, "a", attr="href", class_="product__link"),
             "image_url": self.get_attribute(tile, "img", attr="src"),
+            "promotion_type": self._detect_promotion_type(tile),
         }
         return models.ProductTile(**product_data)
+
+    def _detect_promotion_type(self, tile: Tag) -> Optional[str]:
+        badge = self.get_text_content(tile, "span", class_="product__badge")
+        if not badge:
+            return None
+
+        normalized = badge.strip().upper()
+
+        if normalized.startswith("1/2"):
+            return "HALF PRICE"
+        if normalized in ["EVERY DAY", "ONLINE ONLY", "SPECIAL", "DOWN DOWN"]:
+            return normalized
+
+        return None

@@ -2,6 +2,8 @@
 Tests for ColesProductTileExtractor.
 """
 
+from collections import Counter
+
 import bs4
 import pytest
 
@@ -37,6 +39,13 @@ def test_get_all_products(page_html_path, expected_output_path):
 
     for product in products:
         assert isinstance(product, ProductTile)
+
+    promo_counts = Counter((p.promotion_type for p in products))
+    assert promo_counts["SPECIAL"] == labels["EXPECTED_SPECIAL_PRODUCT_COUNT"]
+    assert promo_counts["DOWN DOWN"] == labels["EXPECTED_DOWN_DOWN_PRODUCT_COUNT"]
+    assert promo_counts["EVERY DAY"] == labels["EXPECTED_EVERY_DAY_PRODUCT_COUNT"]
+    assert promo_counts["HALF PRICE"] == labels["EXPECTED_HALF_PRICE_PRODUCT_COUNT"]
+    assert promo_counts["ONLINE ONLY"] == labels["EXPECTED_ONLINE_ONLY_PRODUCT_COUNT"]
 
     assert products[0] == ProductTile(**labels["EXPECTED_FIRST_PRODUCT_DATA"])
     assert products[-1] == ProductTile(**labels["EXPECTED_LAST_PRODUCT_DATA"])
