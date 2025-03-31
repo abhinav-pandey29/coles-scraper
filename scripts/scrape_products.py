@@ -165,6 +165,7 @@ class ColesCategoryProductPipeline:
             "product_image_url",
             "display_price",
             "current_price_aud",
+            "promotion_type",
             "unit_price_aud",
             "unit_of_measure",
             "previous_price_aud",
@@ -173,6 +174,10 @@ class ColesCategoryProductPipeline:
             "scrape_date",
             "scrape_timestamp",
         ]
+        if len(cols_order) < len(df.columns):
+            _dropped_cols = [col for col in df.columns if col not in cols_order]
+            logger.warning(f"Dropping columns not in output schema: {_dropped_cols}")
+
         return df[cols_order]
 
     def _save_raw_and_archive(self, df_new: pd.DataFrame) -> pd.DataFrame:
@@ -231,7 +236,7 @@ if __name__ == "__main__":
     scraper = ColesScraper(headers=headers)
 
     categories = [
-        "fruit-vegetables",
+        # "fruit-vegetables",
         "dairy-eggs-fridge",
         "pantry",
         "meat-seafood",
