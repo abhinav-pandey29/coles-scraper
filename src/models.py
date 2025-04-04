@@ -79,3 +79,5 @@ class Product:
             f"{'='*40}\n"
         )
         return repr_string
+
+    dict = asdict
