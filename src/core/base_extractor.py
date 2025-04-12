@@ -19,7 +19,7 @@ class HtmlExtractor:
     """
 
     def __init__(self, html_content: str):
-        self.soup = BeautifulSoup(html_content, "html.parser")
+        self.soup = BeautifulSoup(html_content, "lxml")
         self.logger = logging.getLogger(self.__class__.__name__)
 
     def extract(self):
