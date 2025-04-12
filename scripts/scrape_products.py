@@ -191,7 +191,7 @@ class ColesCategoryProductPipeline:
             products_df = df_new.copy()
 
         products_df["timestamp_parsed"] = pd.to_datetime(
-            products_df["timestamp"], errors="coerce"
+            products_df["timestamp"], errors="coerce", utc=True
         )
         products_df.sort_values("timestamp_parsed", ascending=False, inplace=True)
 
