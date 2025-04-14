@@ -1,5 +1,5 @@
 """
-Page Object Mode for Coles category browsing pages.
+Page Object Model for Coles category browsing pages.
 """
 
 from typing import List
