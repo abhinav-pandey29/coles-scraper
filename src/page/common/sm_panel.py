@@ -73,12 +73,15 @@ class ShoppingMethodPanel(BasePage):
         self.click_element_with_wait(self.SET_LOCATION_BUTTON)
 
     def choose_store(self, full_label: str, auto_confirm: bool = True) -> None:
-        full_label = full_label.strip().lower()
         options = self.find_store_radio_items()
 
         for option in options:
             option_label = option.find_element(*self.STORE_RADIO_LABEL)
-            if option_label.text.strip().lower() == full_label:
+
+            option_label_norm = option_label.text.strip().lower()
+            full_label_norm = full_label.strip().lower()
+
+            if option_label_norm == full_label_norm:
                 option.click()
                 if auto_confirm:
                     self.set_location()
