@@ -19,7 +19,7 @@ class ColesPageFetcher:
     DEFAULT_HEADERS = {
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0",
+        "Chrome/129.0.0.0 Safari/537.36",
     }
     DEFAULT_REFRESH_URLS = [
         "https://www.coles.com.au/browse/fruit-vegetables",
@@ -98,6 +98,7 @@ class ColesPageFetcher:
         driver.request_interceptor = self._intercept_cookie
 
         try:
+            driver.get("https://www.coles.com.au")
             # First call to prompt cookie creation,
             # Second call to intercept cookie and update headers
             _NUM_VISITS = 2
