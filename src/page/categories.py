@@ -2,9 +2,8 @@
 Page Object Model for Coles browse page.
 """
 
-from selenium.webdriver.common.by import By
-
-from .base import BasePage
+from src.core.base_page import BasePage
+from src.core.webdriver import By
 
 
 class CategoriesPageLocators:

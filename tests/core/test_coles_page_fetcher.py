@@ -7,7 +7,7 @@ from unittest.mock import MagicMock
 import pytest
 import requests
 
-from src.fetcher import ColesPageFetcher
+from src.core.fetcher import ColesPageFetcher
 
 # --- Helpers for Testing --- #
 
@@ -66,7 +66,7 @@ def test_initialization(fake_driver_factory):
         driver_factory=fake_driver_factory,
         headers={},
         sleep_func=lambda x: None,
-        refresh_urls=["http://fake.refresh/"],
+        refresh_url="http://fake.refresh/",
     )
     # After __init__, the fake driver's intercept_cookie should have set the cookie.
     assert fetcher.session.headers.get("cookie") == "fake_cookie=1"
@@ -82,7 +82,7 @@ def test_initialization_with_defaults(fake_driver_factory):
         driver_factory=fake_driver_factory,
         headers=headers,
         sleep_func=lambda x: None,
-        refresh_urls=["http://fake.refresh/"],
+        refresh_url="http://fake.refresh/",
     )
     # The cookie should remain as provided.
     assert fetcher.session.headers.get("cookie") == "provided_cookie=abc"
@@ -97,7 +97,7 @@ def test_get_without_detection(fake_driver_factory, monkeypatch):
         driver_factory=fake_driver_factory,
         headers=headers,
         sleep_func=lambda x: None,
-        refresh_urls=["http://fake.refresh/"],
+        refresh_url="http://fake.refresh/",
     )
 
     def fake_get(url, **kwargs):
@@ -118,7 +118,7 @@ def test_get_with_detection(fake_driver_factory, monkeypatch):
         driver_factory=fake_driver_factory,
         headers=headers,
         sleep_func=lambda x: None,
-        refresh_urls=["http://fake.refresh/"],
+        refresh_url="http://fake.refresh/",
     )
 
     call_count = [0]

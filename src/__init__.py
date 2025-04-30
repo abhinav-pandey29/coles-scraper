@@ -2,6 +2,7 @@
 Package for scraping product data from Coles online storefront.
 """
 
-from .fetcher import ColesPageFetcher
+from .coles_scraper import ColesScraper
+from .core import ColesPageFetcher
+from .extractors import ColesProductExtractor, ColesProductTileExtractor
 from .models import Product, ProductTile
-from .scrapers import ColesProductScraper, ColesProductTileScraper

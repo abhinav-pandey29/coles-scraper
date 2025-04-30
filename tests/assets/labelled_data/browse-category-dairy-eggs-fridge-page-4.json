@@ -1,0 +1,24 @@
+{
+  "EXPECTED_PRODUCT_COUNT": 58,
+  "EXPECTED_SPECIAL_PRODUCT_COUNT": 13,
+  "EXPECTED_DOWN_DOWN_PRODUCT_COUNT": 7,
+  "EXPECTED_EVERY_DAY_PRODUCT_COUNT": 10,
+  "EXPECTED_HALF_PRICE_PRODUCT_COUNT": 2,
+  "EXPECTED_ONLINE_ONLY_PRODUCT_COUNT": 0,
+  "EXPECTED_FIRST_PRODUCT_DATA": {
+    "name": "Coles Cheese Shredded Tasty Light | 700g",
+    "url": "/product/coles-cheese-shredded-tasty-light-700g-8145346",
+    "price": "$9.50",
+    "price_calc_method": "$13.57 per 1kg",
+    "image_url": "/_next/image?url=https%3A%2F%2Fproductimages.coles.com.au%2Fproductimages%2F8%2F8145346.jpg&w=640&q=90",
+    "promotion_type": "EVERY DAY"
+  },
+  "EXPECTED_LAST_PRODUCT_DATA": {
+    "name": "Primo Pepperoni Hot Salami | 80g",
+    "url": "/product/primo-pepperoni-hot-salami-80g-2808735",
+    "price": "$3.95",
+    "price_calc_method": "$49.38 per 1kg",
+    "image_url": "/_next/image?url=https%3A%2F%2Fproductimages.coles.com.au%2Fproductimages%2F2%2F2808735.jpg&w=640&q=90",
+    "promotion_type": "SPECIAL"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "url": "https://www.coles.com.au/product/appy-fizz-250ml-8060378",
+  "slug": "appy-fizz-250ml-8060378",
+  "name": "Appy Fizz | 250mL",
+  "brand_name": "Appy",
+  "brand_slug": "appy-4039743300",
+  "price": "$2.50",
+  "price_calc_desc": "$10.00 per 1l",
+  "image_url": "https://productimages.coles.com.au/productimages/8/8060378.jpg",
+  "categories": [
+    "Home",
+    "All categories",
+    "Pantry",
+    "International foods",
+    "Indian"
+  ],
+  "tags": [],
+  "additional_desc": null,
+  "nutritional_info": {},
+  "ingredients": null,
+  "allergens": null,
+  "dietary": null,
+  "usage_instructions": null,
+  "storage_instructions": null,
+  "warnings": null,
+  "retail_limit": "Retail limit: 20",
+  "promotional_limit": "Promotional limit: 12",
+  "product_code": "Code: 8060378",
+  "promotion_type": "SPECIAL"
+}

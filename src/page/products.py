@@ -1,18 +1,13 @@
 """
-Page Object Mode for Coles category browsing pages.
+Page Object Model for Coles category browsing pages.
 """
 
 from typing import List
 
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-
+from src.core.base_page import BasePage
+from src.core.webdriver import By
+from src.extractors import ColesProductTileExtractor
 from src.models import ProductTile
-from src.scrapers import ColesProductTileScraper
-
-from .base import BasePage
 
 
 class ProductsPageLocators:
@@ -44,7 +39,7 @@ class ProductsPage(BasePage):
     - `https://www.coles.com.au/browse/pantry?page=2`
     """
 
-    scraper_cls = ColesProductTileScraper
+    extractor_cls = ColesProductTileExtractor
 
     def __init__(self, driver, category, page=1):
         super().__init__(driver=driver)
@@ -59,8 +54,8 @@ class ProductsPage(BasePage):
 
     def list_products(self) -> List[ProductTile]:
         if self.wait_for_element_visibility(ProductsPageLocators.PRODUCT_CARD):
-            scraper = self.scraper_cls(html_content=self.driver.page_source)
-            products = scraper.get_all_products()
+            extractor = self.extractor_cls(html_content=self.driver.page_source)
+            products = extractor.extract()
         else:
             products = []
         return products

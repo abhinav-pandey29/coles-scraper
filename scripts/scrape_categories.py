@@ -8,8 +8,8 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
-from src.poms.categories import CategoriesPage
-from src.webdriver_utils import initialize_driver
+from src.core.webdriver import initialize_driver
+from src.page.categories import CategoriesPage
 
 DEST_DIR = "./data/raw"
 DEST_FILEPATH = os.path.join(DEST_DIR, "product-categories.json")

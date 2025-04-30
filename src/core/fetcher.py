@@ -1,14 +1,11 @@
 import logging
 import random
 import time
-from typing import Callable, Dict, List, Optional
+from typing import Callable, Dict, Optional
 
 import requests
-import selenium.webdriver.support.expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 
-from src.webdriver_utils import init_seleniumwire_webdriver
+from .webdriver import By, init_seleniumwire_webdriver, wait_for_presence_of_element
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +19,7 @@ class ColesPageFetcher:
     DEFAULT_HEADERS = {
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0",
+        "Chrome/129.0.0.0 Safari/537.36",
     }
     DEFAULT_REFRESH_URLS = [
         "https://www.coles.com.au/browse/fruit-vegetables",
@@ -36,14 +33,14 @@ class ColesPageFetcher:
         driver_factory: Optional[Callable] = None,
         session: Optional[requests.Session] = None,
         headers: Optional[Dict] = None,
-        refresh_urls: List[str] = None,
+        refresh_url: Optional[str] = None,
         sleep_func=time.sleep,
     ):
         """
         :param driver_factory: Callable to create a Selenium (seleniumwire) driver.
         :param session: An optional requests.Session instance.
         :param headers: Optional headers dict; if not provided, defaults are used.
-        :param refresh_urls: A list of URLs to use for cookie refresh. Defaults to a predefined list.
+        :param refresh_url: URL to visit when refreshing cookie. Defaults to a random grocery category page.
         :param sleep_func: Function to use for sleeping. Defaults to time.sleep (can be overridden in tests).
         """
         self.driver_factory = driver_factory or self.DEFAULT_DRIVER_FACTORY
@@ -51,8 +48,7 @@ class ColesPageFetcher:
         self.session.headers = (
             headers.copy() if headers else self.DEFAULT_HEADERS.copy()
         )
-        self.refresh_urls = refresh_urls or self.DEFAULT_REFRESH_URLS
-        self.refresh_url = random.choice(self.refresh_urls)
+        self.refresh_url = refresh_url or random.choice(self.DEFAULT_REFRESH_URLS)
         self.sleep_func = sleep_func
 
         if not self.session.headers.get("cookie"):
@@ -99,18 +95,20 @@ class ColesPageFetcher:
         """
         logger.info("Refreshing cookie using refresh_url: %s", self.refresh_url)
         driver = self.driver_factory()
-        driver.request_interceptor = self.intercept_cookie
+        driver.request_interceptor = self._intercept_cookie
 
         try:
+            driver.get("https://www.coles.com.au")
             # First call to prompt cookie creation,
             # Second call to intercept cookie and update headers
-            for _ in range(2):
+            _NUM_VISITS = 2
+            for _ in range(_NUM_VISITS):
                 try:
                     driver.get(self.refresh_url)
-                    WebDriverWait(driver, 30).until(
-                        EC.presence_of_element_located(
-                            (By.CSS_SELECTOR, "#coles-targeting-header-container")
-                        )
+                    wait_for_presence_of_element(
+                        driver=driver,
+                        locator=(By.CSS_SELECTOR, "#coles-targeting-header-container"),
+                        timeout=30,
                     )
                     self.sleep_func(5)
                 except Exception as e:
@@ -119,7 +117,10 @@ class ColesPageFetcher:
         finally:
             driver.quit()
 
-    def intercept_cookie(self, request):
+    def _intercept_cookie(self, request):
+        """
+        Intercepts the cookie from a refresh URL request and sets it in session headers.
+        """
         if request.url.startswith(self.refresh_url):
             cookie_value = request.headers.get("cookie")
             if cookie_value:

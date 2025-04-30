@@ -1,0 +1,39 @@
+{
+  "url": "https://www.coles.com.au/product/lotus-biscoff-sandwich-biscuits-vanilla-110g-6845664",
+  "slug": "lotus-biscoff-sandwich-biscuits-vanilla-110g-6845664",
+  "name": "Lotus Biscoff Sandwich\n                                Biscuits Vanilla | 110g",
+  "brand_name": "Lotus Biscoff",
+  "brand_slug": "lotus-biscoff-3757465928",
+  "image_url": "https://cdn.productimages.coles.com.au/productimages/6/6845664.jpg",
+  "price": "$3.25",
+  "price_calc_desc": "$2.95 per 100g",
+  "categories": [
+    "Home",
+    "All categories",
+    "Chips, Chocolates &\n                                        Snacks",
+    "Biscuits & Cookies",
+    "Cream & Plain Biscuits"
+  ],
+  "tags": ["Vegetarian"],
+  "additional_desc": "The unique taste of Lotus Biscoff also comes in a sandwich Biscuit.\n                                                    Two delicious crunchy Biscoff Biscuits with a smooth cream filling\n                                                    in between. Enjoy the delicious caramelised taste of this filled\n                                                    Biscuit wherever and whenever you want. Perfect for sharing with\n                                                    your friends and family! Made with non-GMO ingredients, Lotus\n                                                    Biscoff Biscuits are vegan friendly and contain no artificial\n                                                    flavours or colors.A delicious, caramelised crunchy biscuit on\n                                                        the outside, with a smooth creamy Vanilla filling on the inside.\n                                                    \nComes in a handy sharing pack\nNo colours\nNo added flavours\nSuitable for vegetarians.",
+  "nutritional_info": {
+    "Energy": { "Per 100g/ml": "2190", "Per Serving": "656" },
+    "Protein": { "Per 100g/ml": "4.6 g", "Per Serving": "1.4 g" },
+    "Carbohydrate": { "Per 100g/ml": "65.9 g", "Per Serving": "19.8 g" },
+    "Energy (Cal)": { "Per 100g/ml": "522", "Per Serving": "157" },
+    "Fat - Saturated": { "Per 100g/ml": "14.7 g", "Per Serving": "4.4 g" },
+    "Sugars - Total": { "Per 100g/ml": "34.0 g", "Per Serving": "10.2 g" },
+    "Sodium": { "Per 100g/ml": "325 mg", "Per Serving": "98 mg" },
+    "Fat - Total": { "Per 100g/ml": "26.4 g", "Per Serving": "7.9 g" }
+  },
+  "ingredients": "Wheat flour, sugar, vegetable oils (palm oil, canola oil), candy sugar syrup, raising agent (sodium bicarbonate), soy flour, salt, cinnamon, emulsifier (soy lecithin).",
+  "allergens": "Contains Wheat, Soy, Gluten. May Be Present Milk",
+  "dietary": "No Added Colours, No Artificial Flavours or Colours",
+  "usage_instructions": "30g (3 biscuits of 10g)",
+  "storage_instructions": "Keep in a cool and dry place, away from direct sunlight.",
+  "warnings": "May contain milk",
+  "retail_limit": "Retail limit: 20",
+  "promotional_limit": "Promotional limit: 12",
+  "product_code": "Code: 6845664",
+  "promotion_type": null
+}

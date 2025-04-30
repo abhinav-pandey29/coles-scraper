@@ -1,7 +1,7 @@
 """
-Base scrapers with common scraping utilities.
+Base extractors with common extraction utilities.
 
-All scraper classes should inherit from these.
+All extractor classes should inherit from these.
 """
 
 import logging
@@ -13,14 +13,17 @@ from bs4.element import Tag
 logger = logging.getLogger(__name__)
 
 
-class HtmlScraper:
+class HtmlExtractor:
     """
-    Base class for scraping HTML content using BeautifulSoup.
+    Base class for extracting data from HTML content using BeautifulSoup.
     """
 
     def __init__(self, html_content: str):
-        self.soup = BeautifulSoup(html_content, "html.parser")
+        self.soup = BeautifulSoup(html_content, "lxml")
         self.logger = logging.getLogger(self.__class__.__name__)
+
+    def extract(self):
+        raise NotImplementedError("Extractors must implement this method.")
 
     @staticmethod
     def get_text_content(tag: Tag, name: str, **kwargs) -> Optional[str]:
@@ -36,7 +39,7 @@ class HtmlScraper:
             element = tag.find(name, **kwargs)
             return element.text.strip() if element else None
         except Exception as e:
-            logging.getLogger(HtmlScraper.__name__).error(
+            logging.getLogger(HtmlExtractor.__name__).error(
                 f"Error extracting text content: {e}"
             )
             return None
@@ -55,7 +58,7 @@ class HtmlScraper:
             elements = tag.find_all(name, **kwargs)
             return [element.text.strip() for element in elements if element]
         except Exception as e:
-            logging.getLogger(HtmlScraper.__name__).error(
+            logging.getLogger(HtmlExtractor.__name__).error(
                 f"Error extracting all text content: {e}"
             )
             return []
@@ -79,7 +82,7 @@ class HtmlScraper:
                 else None
             )
         except Exception as e:
-            logging.getLogger(HtmlScraper.__name__).error(
+            logging.getLogger(HtmlExtractor.__name__).error(
                 f"Error extracting attribute '{attr}': {e}"
             )
             return None
@@ -108,7 +111,7 @@ class HtmlScraper:
                 for element in elements
             ]
         except Exception as e:
-            logging.getLogger(HtmlScraper.__name__).error(
+            logging.getLogger(HtmlExtractor.__name__).error(
                 f"Error extracting all attribute values for '{attr}': {e}"
             )
             return []
